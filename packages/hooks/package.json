@@ -5,13 +5,18 @@
   "author": "chenrun <godakid@outlook.com>",
   "homepage": "https://github.com/couriourc/at-couriourc#readme",
   "license": "ISC",
-  "main": "lib/hooks.js",
+  "main": "src/index.ts",
   "directories": {
-    "lib": "lib",
+    "dist": "dist",
     "test": "__tests__"
   },
+  "exports": {
+    "default": {
+      "import": "./dist/index.mjs"
+    }
+  },
   "files": [
-    "lib"
+    "dist"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -21,15 +26,23 @@
     "url": "git+https://github.com/couriourc/at-couriourc.git"
   },
   "scripts": {
-    "test": "node ./__tests__/@couriourc/hooks.test.js"
+    "dev": "unbuild --stub",
+    "build": "unbuild ",
+    "test": "vitest"
   },
   "bugs": {
     "url": "https://github.com/couriourc/at-couriourc/issues"
   },
   "dependencies": {
-    "@couriourc/design-patterns": "workspace:*"
+    "@couriourc/design-patterns": "workspace:*",
+    "underscore": "^1.13.6"
   },
   "devDependencies": {
     "vitest": "^1.5.2"
+  },
+  "peerDependencies": {
+    "mitt": "^3.0.1",
+    "react": "^18.2.0",
+    "wxt": "^0.17.0"
   }
 }

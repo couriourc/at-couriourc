@@ -1,11 +1,11 @@
 {
     "$schema": "https://turborepo.org/schema.json",
-    "baseBranch": "origin/master",
     "pipeline": {
         "dev": {
             "dependsOn": [
                 "^dev"
-            ]
+            ],
+            "cache": false
         },
         "build": {
             "dependsOn": [

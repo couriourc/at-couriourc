@@ -9,6 +9,7 @@
   "private": "false",
   "directories": {
     "lib": "dist",
+    "build": "unbuild ",
     "test": "__tests__"
   },
   "exports": {
@@ -34,8 +35,10 @@
   "bugs": {
     "url": "https://github.com/couriourc/at-couriourc/issues"
   },
-  "dependencies": {},
   "devDependencies": {
     "vitest": "^1.5.2"
+  },
+  "dependencies": {
+    "underscore": "^1.13.6"
   }
 }
