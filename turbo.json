@@ -10,8 +10,20 @@
         "build": {
             "dependsOn": [
                 "^build"
+            ],
+            "outputs": [
+                ".turbo-cache/**"
             ]
+        },
+        "clean": {
+            "dependsOn": [
+                "^clean"
+            ],
+            "cache": false
         }
     },
-    "globalDependencies": []
+    "globalDependencies": [
+        ".env",
+        "tsconfig.json"
+    ]
 }

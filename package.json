@@ -6,13 +6,16 @@
   "private": "true",
   "scripts": {
     "dev": "turbo run dev --parallel",
+    "clean": "turbo run clean --parallel",
     "build": "turbo run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "lerna": "^8.1.2",
+    "rimraf": "^5.0.5",
     "turbo": "^1.13.3",
     "unbuild": "^2.0.0",
     "vitest": "^1.5.2"

@@ -1,7 +1,6 @@
 /* @ts-ignore */
 import { browser } from "wxt/browser";
 import { Singleton } from "@couriourc/design-patterns";
-import { useState } from "react";
 import mitt from 'mitt';
 import { noop } from "underscore";
 

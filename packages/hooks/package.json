@@ -1,6 +1,6 @@
 {
   "name": "@couriourc/hooks",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "> TODO: description",
   "author": "chenrun <godakid@outlook.com>",
   "homepage": "https://github.com/couriourc/at-couriourc#readme",
@@ -27,7 +27,8 @@
   },
   "scripts": {
     "dev": "unbuild --stub",
-    "build": "unbuild ",
+    "build": "unbuild --minify",
+    "clean": "pnpx rimraf dist",
     "test": "vitest"
   },
   "bugs": {
@@ -38,6 +39,7 @@
     "underscore": "^1.13.6"
   },
   "devDependencies": {
+    "unbuild": "^2.0.0",
     "vitest": "^1.5.2"
   },
   "peerDependencies": {

@@ -1,26 +1,28 @@
 {
-  "name": "@couriourc/design-patterns",
-  "version": "1.0.0",
-  "description": "The design patterns normally used are repeatedly integrated in some tools, so they are extracted separately.",
+  "name": "@couriourc/utils",
+  "version": "0.0.1",
+  "description": "a tool set for work",
+  "keywords": [
+    "util-sets"
+  ],
   "author": "chenrun <godakid@outlook.com>",
-  "homepage": "https://github.com/couriourc/at-couriourc#readme",
+  "homepage": "https://couriourc.github.io/",
   "license": "MIT",
   "main": "src/index.ts",
   "directories": {
-    "lib": "dist",
+    "dist": "dist",
     "test": "__tests__"
   },
   "exports": {
     "default": {
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/index.mjs"
     }
   },
   "files": [
     "dist"
   ],
   "publishConfig": {
-    "registry": "https://registry.npmjs.org"
+    "registry": "https://registry.npmjs.org/"
   },
   "repository": {
     "type": "git",
@@ -34,12 +36,5 @@
   },
   "bugs": {
     "url": "https://github.com/couriourc/at-couriourc/issues"
-  },
-  "devDependencies": {
-    "unbuild": "^2.0.0",
-    "vitest": "^1.5.2"
-  },
-  "dependencies": {
-    "underscore": "^1.13.6"
   }
 }
