@@ -12,4 +12,4 @@
 
 [build]
 publish = "docs/"
-command = "pnpm i && pnpm docs"
+command = "pnpm i && pnpm run docs"
