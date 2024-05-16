@@ -36,5 +36,9 @@
   },
   "bugs": {
     "url": "https://github.com/couriourc/at-couriourc/issues"
+  },
+  "devDependencies": {
+    "unbuild": "^2.0.0",
+    "vitest": "^1.5.2"
   }
 }
