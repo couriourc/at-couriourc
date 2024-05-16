@@ -8,18 +8,27 @@
     "dev": "turbo run dev --parallel",
     "clean": "turbo run clean --parallel",
     "build": "turbo run build",
-    "docs": "typedoc"
+    "typedocs": "typedoc-pkg --config"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
+    "@typhonjs-typedoc/typedoc-pkg": "^0.0.5",
     "lerna": "^8.1.2",
     "rimraf": "^5.0.5",
     "turbo": "^1.13.3",
     "typedoc": "^0.25.13",
+    "typedoc-plugin-markdown": "^4.0.2",
+    "typedoc-plugin-merge-modules": "^5.1.0",
+    "typedoc-plugin-particles": "^1.4.0",
     "unbuild": "^2.0.0",
     "vitest": "^1.5.2"
-  }
+  },
+  "npmClient": "pnpm",
+  "useWorkspaces": true,
+  "workspaces": [
+    "packages/*"
+  ]
 }

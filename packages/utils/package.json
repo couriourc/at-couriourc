@@ -14,7 +14,8 @@
     "test": "__tests__"
   },
   "exports": {
-    "default": {
+    ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs"
     }
   },
