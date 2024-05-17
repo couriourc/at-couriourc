@@ -1,1 +1,2 @@
-export * from "./useConnector/index"
+export * from "./useConnector";
+export * from "./useLocker";

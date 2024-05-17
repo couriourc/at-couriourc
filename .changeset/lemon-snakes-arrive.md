@@ -1,5 +1,0 @@
----
-"@couriourc/utils": major
----
-
-initial

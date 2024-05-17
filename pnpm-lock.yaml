@@ -45,6 +45,8 @@ importers:
         specifier: ^1.5.2
         version: 1.6.0(@types/node@20.12.12)
 
+  packages/child: {}
+
   packages/design-patterns:
     dependencies:
       underscore:
