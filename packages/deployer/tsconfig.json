@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "*": [
+        "*",
+        "index"
+      ]
+    },
+    "allowSyntheticDefaultImports": true,
+    "target": "ES5"
+  }
+}

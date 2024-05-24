@@ -1,3 +1,6 @@
+---
+to: packages/<%= name %>/tsconfig.json
+---
 {
     "compilerOptions": {
         "baseUrl": "./",

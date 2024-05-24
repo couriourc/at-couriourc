@@ -1,12 +1,12 @@
+---
+to: packages/<%= name %>/package.json
+---
 {
-  "name": "@couriourc/utils",
+  "name": "<%=packagePrefix %>/<%= name %>",
   "version": "1.0.0",
-  "description": "a tool set for work",
-  "keywords": [
-    "util-sets"
-  ],
-  "author": "chenrun <godakid@outlook.com>",
-  "homepage": "https://couriourc.github.io/",
+  "description": "<%= summary %>",
+  "author": "<%= author %> <<%= email %>> ",
+  "homepage": "https://github.com/couriourc/at-couriourc/packages/<%= name %>/#readme",
   "license": "MIT",
   "main": "src/index.ts",
   "directories": {
@@ -23,7 +23,7 @@
     "dist"
   ],
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org"
   },
   "repository": {
     "type": "git",
@@ -37,10 +37,5 @@
   },
   "bugs": {
     "url": "https://github.com/couriourc/at-couriourc/issues"
-  },
-  "devDependencies": {
-    "@types/node": "^20.12.12",
-    "unbuild": "^2.0.0",
-    "vitest": "^1.5.2"
   }
 }

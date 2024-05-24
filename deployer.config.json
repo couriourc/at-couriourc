@@ -1,0 +1,7 @@
+{
+  "repo": {
+    "url": "https://github.com/Shinigami92/vite-plugin-ts-nameof.git",
+    "branch": "master"
+  },
+  "public": "./dist"
+}
