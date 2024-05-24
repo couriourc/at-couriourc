@@ -150,6 +150,7 @@ const main = (
 				concurrency: config.concurrency,
 			})
 		}).then(() => {
+			if (!config.repo) return
 			return push(config.repo)
 		})
 

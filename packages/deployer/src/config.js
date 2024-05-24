@@ -7,7 +7,7 @@ const defaultConfig = {
 	cwd        : path.resolve(process.cwd(), "."),
 	public     : path.resolve(__dirname, "../example"),
 	repo       : {
-		url   : "https://github.com/Shinigami92/vite-plugin-ts-nameof.git",
+		url   : "",
 		branch: "master",
 	},
 	concurrency: 2,
