@@ -15,4 +15,6 @@ export interface IConfigurations {
     silent?: boolean;
     username?: string;
     email?: string;
+    extendDirs?: string | string[];
+    concurrency?: number;
 }

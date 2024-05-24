@@ -6,6 +6,5 @@ const deployer = require("../bin/index")
 describe("for get config", () => {
 	test("do cli", () => {
 		deployer(defaultConfig)
-
 	})
 })

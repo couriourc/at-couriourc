@@ -6,6 +6,9 @@ const {program} = require("commander")
 const pkg = require("../package.json")
 const defaultConfig = require("./config")
 const {isString} = require("underscore")
+const yaml = require("yaml")
+const fs = require("fs")
+const path = require("path")
 
 function parseObjRepo(repo) {
 	let url = repo.url
@@ -81,17 +84,22 @@ function parseRepo(repo) {
 	return parseObjRepo(repo)
 }
 
-/**
- * @return {Promise<IConfigurations> }
- * */
-module.exports = async function (args) {
-	program
-		.version(pkg.version)
-		.option("-r --repo <repo-url>", "target repo")
-		.option("-b --branch [repo-branch]", "target repo branch")
-	program.parse(process.argv)
+function parseCwd(cwd) {
+	if (cwd === process.cwd()) return cwd
+	return path.resolve(process.cwd(), cwd)
+}
 
-	const fromFileConfig = (await loadConfig({
+function parseExtendDirs(extendDirs) {
+	if (isString(extendDirs)) return [extendDirs]
+	return extendDirs ?? []
+}
+
+function parsePublicDirs() {
+
+}
+
+async function loadFromFile() {
+	const config = (await loadConfig({
 		sources: [
 			{
 				files     : "deployer.config",
@@ -104,13 +112,65 @@ module.exports = async function (args) {
 					return config.deployer
 				},
 			},
+			{
+				files     : ".deployer",
+				extensions: ["yaml"],
+				parser(yamlTarget) {
+					return yaml.parse(fs.readFileSync(yamlTarget).toString(), {
+						version: "next",
+					})
+				},
+			},
 		],
 		merge  : true,
 	})).config
+	return config
+}
 
+function loadFromArgv() {
+	program
+		.version(pkg.version)
+		.option("-r --repo <repo-url>", "target repo")
+		.option("-b --branch [repo-branch]", "target repo branch")
+	program.parse(process.argv)
+	const args = program.opts()
+	return args
+}
+
+/**
+ * @return {Promise<IConfigurations> }
+ * */
+module.exports = async function () {
+	const fromFileConfig = await loadFromFile()
+	const fromArgvConfig = await loadFromArgv()
 	const config = Object.assign(defaultConfig, fromFileConfig)
+
 	config.repo = parseRepo(config.repo)
+	config.cwd = parseCwd(config.cwd)
+	config.extendDirs = parseExtendDirs(config.extendDirs)
+	return config
+}
+
+function resolveConfig(config) {
 
 	return config
 }
 
+function parse(key, value) {
+	if (key === "repo") {
+
+	}
+	return value
+}
+
+function mergeConfig(defaultConfig, ...args) {
+	const config = {}
+	Object.keys(defaultConfig)
+		.forEach((key) => {
+			args.forEach((other) => {
+				if (!other || !other[key]) return
+				config[key] = parse(key, other[key])
+			})
+		})
+	return config
+}

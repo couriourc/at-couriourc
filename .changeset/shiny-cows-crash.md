@@ -1,0 +1,5 @@
+---
+"@couriourc/deployer": major
+---
+
+config

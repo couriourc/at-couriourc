@@ -125,15 +125,6 @@ const main = (
 			return fs.copyDir(publicDir, deployDir, opts)
 		}).then(() => {
 			logger.info("Copying files from extend dirs...")
-
-			if (!extendDirs) {
-				return
-			}
-
-			if (typeof extendDirs === "string") {
-				extendDirs = [extendDirs]
-			}
-
 			const mapFn = function (dir) {
 				const opts = {}
 				const extendPath = path.join(baseDir, dir)
@@ -155,7 +146,7 @@ const main = (
 			}
 
 			return Promise.map(extendDirs, mapFn, {
-				concurrency: 2,
+				concurrency: config.concurrency,
 			})
 		}).each(repo => {
 			return push(repo)
