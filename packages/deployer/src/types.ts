@@ -17,4 +17,9 @@ export interface IConfigurations {
     email?: string;
     extendDirs?: string | string[];
     concurrency?: number;
+    runtime: IRunnerConfig;
+}
+
+export interface IRunnerConfig {
+    deploy: boolean;
 }

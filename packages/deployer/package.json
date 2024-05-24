@@ -1,23 +1,17 @@
 {
   "name": "@couriourc/deployer",
-  "version": "1.0.0",
+  "version": "3.0.1",
   "description": "a deployer for some package",
   "author": "couriuorc <godakid@outlook.com> ",
   "homepage": "https://github.com/couriourc/at-couriourc/packages/deployer/#readme",
   "license": "MIT",
   "main": "src/index.js",
   "directories": {
-    "dist": "dist",
+    "dist": "bin",
     "test": "__tests__"
   },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs"
-    }
-  },
   "files": [
-    "dist"
+    "bin"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -30,6 +24,8 @@
     "url": "git+https://github.com/couriourc/at-couriourc.git"
   },
   "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp build",
     "clean": "pnpx rimraf dist",
     "test": "vitest"
   },
@@ -38,24 +34,29 @@
   },
   "dependencies": {
     "bluebird": "^3.7.2",
+    "commander": "^12.1.0",
+    "debug-logger": "^0.4.1",
+    "gulp": "^5.0.0",
+    "gulp-if": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "hexo-fs": "^4.1.3",
+    "hexo-util": "^3.3.0",
     "luxon": "^3.4.4",
     "nunjucks": "^3.2.4",
     "picocolors": "^1.0.1",
-    "debug-logger": "^0.4.1",
-    "hexo-fs": "^4.1.3",
-    "hexo-util": "^3.3.0",
-    "gulp": "^5.0.0",
     "unconfig": "^0.4.1",
-    "commander": "^12.1.0",
     "underscore": "^1.13.6",
-    "yaml": "^2.4.2"
+    "yaml": "^2.4.2",
+    "gulp-babel": "^8.0.0"
   },
   "devDependencies": {
     "@types/luxon": "^3.4.2",
-    "ts-node": "^10.9.2",
     "@types/node": "^20.12.12",
     "@types/nunjucks": "^3.2.6",
     "gulp-typescript": "^6.0.0-alpha.1",
-    "typescript": "^5.4.5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5"
   }
 }

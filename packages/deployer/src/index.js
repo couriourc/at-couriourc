@@ -108,7 +108,8 @@ const main = (
 		.then(() => {
 			logger.info("Clearing .deploy_git folder...")
 			return fs.emptyDir(deployDir)
-		}).then(() => {
+		})
+		.then(() => {
 			const opts = {}
 			logger.info("Copying files from public folder...")
 			if (typeof ignoreHidden === "object") {
@@ -116,7 +117,6 @@ const main = (
 			} else {
 				opts.ignoreHidden = ignoreHidden
 			}
-
 			if (typeof ignorePattern === "string") {
 				opts.ignorePattern = new RegExp(ignorePattern)
 			} else if (typeof ignorePattern === "object" && Reflect.apply(Object.prototype.hasOwnProperty, ignorePattern, ["public"])) {
@@ -124,6 +124,7 @@ const main = (
 			}
 			return fs.copyDir(publicDir, deployDir, opts)
 		}).then(() => {
+
 			logger.info("Copying files from extend dirs...")
 			const mapFn = function (dir) {
 				const opts = {}
@@ -148,13 +149,13 @@ const main = (
 			return Promise.map(extendDirs, mapFn, {
 				concurrency: config.concurrency,
 			})
-		}).each(repo => {
-			return push(repo)
+		}).then(() => {
+			return push(config.repo)
 		})
 
 
 }
-read_config(process.argv)
+read_config()
 	.then((
 		/**@type {IConfigurations}*/
 		config,

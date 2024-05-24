@@ -1,5 +1,0 @@
----
-"@couriourc/deployer": minor
----
-
-config

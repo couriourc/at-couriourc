@@ -1,4 +1,5 @@
 repo:
-  url: https://github.com/couriourc/at-couriourc.git
-  branch: test
+  url: https://codes.datamatrixai.com/sxm/meeting-management-system.git
+  branch: release
 
+public: docs

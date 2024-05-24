@@ -13,5 +13,9 @@ const defaultConfig = {
 	concurrency: 2,
 }
 
+/**@type {IRunnerConfig}*/
+const defaultRunnerConfig = {
+	deploy: false,
+}
 
-module.exports = defaultConfig
+module.exports = {defaultConfig, defaultRunnerConfig}

@@ -4,7 +4,7 @@ const rRepoURL = /^(?:(git|https?|git\+https|git\+ssh):\/\/)?(?:[^@]+@)?([^\/]+?
 const rGithubPage = /\.github\.(io|com)$/
 const {program} = require("commander")
 const pkg = require("../package.json")
-const defaultConfig = require("./config")
+const {defaultConfig, defaultRunnerConfig} = require("./config")
 const {isString} = require("underscore")
 const yaml = require("yaml")
 const fs = require("fs")
@@ -86,6 +86,7 @@ function parseRepo(repo) {
 
 function parseCwd(cwd) {
 	if (cwd === process.cwd()) return cwd
+	if (!cwd) return process.cwd()
 	return path.resolve(process.cwd(), cwd)
 }
 
@@ -99,7 +100,7 @@ function parsePublicDirs() {
 }
 
 async function loadFromFile() {
-	const config = (await loadConfig({
+	return (await loadConfig({
 		sources: [
 			{
 				files     : "deployer.config",
@@ -113,28 +114,29 @@ async function loadFromFile() {
 				},
 			},
 			{
-				files     : ".deployer",
-				extensions: ["yaml"],
+				files     : [".deployer", ".deployerc"],
+				extensions: ["yaml", "yml"],
 				parser(yamlTarget) {
 					return yaml.parse(fs.readFileSync(yamlTarget).toString(), {
 						version: "next",
 					})
 				},
 			},
+
 		],
 		merge  : true,
 	})).config
-	return config
 }
 
+/**
+ * @return {IRunnerConfig }
+ * */
 function loadFromArgv() {
 	program
 		.version(pkg.version)
-		.option("-r --repo <repo-url>", "target repo")
-		.option("-b --branch [repo-branch]", "target repo branch")
+		.option("-d --deploy", "publish")
 	program.parse(process.argv)
-	const args = program.opts()
-	return args
+	return program.opts()
 }
 
 /**
@@ -144,33 +146,24 @@ module.exports = async function () {
 	const fromFileConfig = await loadFromFile()
 	const fromArgvConfig = await loadFromArgv()
 	const config = Object.assign(defaultConfig, fromFileConfig)
-
-	config.repo = parseRepo(config.repo)
-	config.cwd = parseCwd(config.cwd)
-	config.extendDirs = parseExtendDirs(config.extendDirs)
+	parse("repo", config)
+	parse("cwd", config)
+	parse("extendDirs", config)
+	config.runtime = Object.assign(defaultRunnerConfig, fromArgvConfig)
 	return config
 }
 
-function resolveConfig(config) {
-
-	return config
-}
 
 function parse(key, value) {
-	if (key === "repo") {
-
+	switch (key) {
+		case "repo":
+			return parseRepo(value["repo"])
+		case "cwd":
+			return parseCwd(value["cwd"])
+		case "extendDirs":
+			return parseExtendDirs(value["extendDirs"])
+		default:
+			return value[key]
 	}
-	return value
 }
 
-function mergeConfig(defaultConfig, ...args) {
-	const config = {}
-	Object.keys(defaultConfig)
-		.forEach((key) => {
-			args.forEach((other) => {
-				if (!other || !other[key]) return
-				config[key] = parse(key, other[key])
-			})
-		})
-	return config
-}
